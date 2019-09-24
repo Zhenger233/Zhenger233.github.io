@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang='zh-CN'>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148038846-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-148038846-1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description" content="张征的个人网站" />
+  <meta name="keywords" content="征站,个人网站,博客" />
+  <meta http-equiv="content-language" content="zh-CN" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta name="author" content="Zhenger" />
+  <meta name="copyright" content="zhenger.xyz" />
+  <meta name="viewport" content="width=720,inital-scale=1.0,user-scalable=no;">
+  <title>征站</title>
+  <link rel="icon" href="img/1.ico" type="image/x-icon">
+
+<style type="text/css">
+
+  form {font-size: 175%}
+  </style>
+
+</head>
+
+<body style="background-color:#f0f8ff">
+  <p style="font-size:200%;text-align:center" >概率论排列组合分式计算器</p>
+  <form name="f1" id="f" style="text-align:center">
+    <p>分子：<text id=fz1></text>=<text id="fz2"></text></p>
+    <select name="picker1">
+      <option value="C" selected="selected">C(组合)</option>
+      <option value="P">P(排列)</option>
+    </select>
+    <p>n:<input type="number" name="n1"></input></p>
+    <p>r:<input type="number" name="n2"></input></p>
+    <button type="button" onclick=getupnum()>点击我！</button>
+    <p></p>
+    <p>分母：<text id="fm1"></text>=<text id="fm2"></text></p>
+    <select name="picker2">
+      <option value="C" selected="selected">C(组合)</option>
+      <option value="P">P(排列)</option>
+    </select>
+    <p>n:<input type="number" name="n3"></input></p>
+    <p>r:<input type="number" name="n4"></input></p>
+    <button type="button" onclick=getdownnum()>点击我！</button>
+
+    <p>答案：<text id="ans1"></text>=<text id="ans2"></text></p>
+
+  </form>
+  <a href="http://zhenger.xyz" alt="无心之惩"><abbr title="surprise!">
+      <blockquote><ins>回到主页</ins></blockquote>
+    </abbr></a>
+</body>
+<script src="index.js"></script>
+
+</html>
