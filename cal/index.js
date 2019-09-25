@@ -1,40 +1,45 @@
-var tempnum1, tempnum2, tempnum3, upnum=1, downnum=1
-function getupnum() {
-    tempnum1 = document.forms["f1"]["n1"].value;
-    tempnum2 = document.forms["f1"]["n2"].value;
+var tempNum1, tempNum2, tempNum3, upNum=1, downNum=1
+function getUpNum() {
+    tempNum1 = document.forms["f1"]["n1"].value;
+    tempNum2 = document.forms["f1"]["n2"].value;
     if (document.forms["f1"]["picker1"].value == "C") {
-        tempnum3 = this.combination(tempnum1, tempnum2);
-        document.getElementById("fz1").innerHTML+='C('+tempnum1+','+tempnum2+')';
+        tempNum3 = this.combination(tempNum1, tempNum2);
+        document.getElementById("fz1").innerHTML+='C('+tempNum1+','+tempNum2+')';
     }
     else {
-        tempnum3=this.permutation(tempnum1,tempnum2);
-        document.getElementById("fz1").innerHTML+='P('+tempnum1+','+tempnum2+')';
+        tempNum3=this.permutation(tempNum1,tempNum2);
+        document.getElementById("fz1").innerHTML+='P('+tempNum1+','+tempNum2+')';
     }
-    upnum*=tempnum3;
-    document.getElementById("fz2").innerHTML=upnum;
-    getanswer();
+    upNum*=tempNum3;
+    document.getElementById("fz2").innerHTML=upNum;
+    getAnswer();
 }
 
-function getdownnum() {
-    tempnum1 = document.forms["f1"]["n3"].value;
-    tempnum2 = document.forms["f1"]["n4"].value;
+function getDownNum() {
+    tempNum1 = document.forms["f1"]["n3"].value;
+    tempNum2 = document.forms["f1"]["n4"].value;
     if (document.forms["f1"]["picker2"].value == "C") {
-        tempnum3 = this.combination(tempnum1, tempnum2);
-        document.getElementById("fm1").innerHTML+='C('+tempnum1+','+tempnum2+')';
+        tempNum3 = this.combination(tempNum1, tempNum2);
+        document.getElementById("fm1").innerHTML+='C('+tempNum1+','+tempNum2+')';
     }
     else {
-        tempnum3=this.permutation(tempnum1,tempnum2);
-        document.getElementById("fm1").innerHTML+='P('+tempnum1+','+tempnum2+')';
+        tempNum3=this.permutation(tempNum1,tempNum2);
+        document.getElementById("fm1").innerHTML+='P('+tempNum1+','+tempNum2+')';
     }
-    downnum*=tempnum3;
-    document.getElementById("fm2").innerHTML=downnum;
-    getanswer();
+    downNum*=tempNum3;
+    document.getElementById("fm2").innerHTML=downNum;
+    getAnswer();
 }
 
-function getanswer() {
-    var temp=gcd(upnum,downnum);
-    document.getElementById("ans1").innerHTML=upnum/temp+'/'+downnum/temp;
-    document.getElementById("ans2").innerHTML=(upnum/downnum).toFixed(6);
+function getAnswer() {
+    var temp=gcd(upNum,downNum);
+    document.getElementById("ans1").innerHTML=upNum/temp+'/'+downNum/temp;
+    document.getElementById("ans2").innerHTML=(upNum/downNum).toFixed(6);
+}
+
+function clearAllNum() {
+    document.getElementById("fz1").innerHTML=document.getElementById("fz2").innerHTML=document.getElementById("fm1").innerHTML=document.getElementById("fm2").innerHTML=document.getElementById("ans1").innerHTML=document.getElementById("ans2").innerHTML="";
+    upNum=downNum=1;
 }
 
 combination: function combination(m, n) {
