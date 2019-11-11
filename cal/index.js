@@ -1,17 +1,50 @@
-var tempNum1, tempNum2, tempNum3, upNum=1, downNum=1
+var tempNum1, tempNum2, tempNum3, upNum = 1, downNum = 1;
+document.getElementById("tempPicker1").style.display = "none";
+document.getElementById("tempPicker2").style.display = "none";
+
+function choosePicker1() {
+    let temp = document.forms["f1"]["picker1"].value;
+    if (temp == "+" || temp == "-" || temp == "×") {
+        document.getElementById("tempPicker1").style.display = "block";
+    }
+    if (temp == "C" || temp == "P") {
+        document.getElementById("tempPicker1").style.display = "none";
+
+        document.getElementById("input1").innerHTML = "n:";
+        document.getElementById("input2").innerHTML = "r:";
+    }
+}
+
+function chooseTempPicker1() {
+    let temp = document.forms["f1"]["tempPicker1"].value;
+
+}
+
 function getUpNum() {
     tempNum1 = document.forms["f1"]["n1"].value;
     tempNum2 = document.forms["f1"]["n2"].value;
-    if (document.forms["f1"]["picker1"].value == "C") {
-        tempNum3 = this.combination(tempNum1, tempNum2);
-        document.getElementById("fz1").innerHTML+='C('+tempNum1+','+tempNum2+')';
+    switch (document.forms["f1"]["picker1"].value) {
+        case "C": {
+            tempNum3 = this.combination(tempNum1, tempNum2);
+            document.getElementById("fz1").innerHTML += 'C(' + tempNum1 + ',' + tempNum2 + ')';
+            upNum *= tempNum3;
+        }
+        case "P": {
+            tempNum3 = this.permutation(tempNum1, tempNum2);
+            document.getElementById("fz1").innerHTML += 'P(' + tempNum1 + ',' + tempNum2 + ')';
+            upNum *= tempNum3;
+            break;
+        }
+        case "/": {
+            tempNum3 = tempNum1 / tempNum2;
+            document.getElementById("fz1").innerHTML += '×' + tempNum1 + '/' + tempNum2;
+            break;
+        }
+        case "+": {
+        }
     }
-    else {
-        tempNum3=this.permutation(tempNum1,tempNum2);
-        document.getElementById("fz1").innerHTML+='P('+tempNum1+','+tempNum2+')';
-    }
-    upNum*=tempNum3;
-    document.getElementById("fz2").innerHTML=upNum;
+
+    document.getElementById("fz2").innerHTML = upNum;
     getAnswer();
 }
 
@@ -20,26 +53,26 @@ function getDownNum() {
     tempNum2 = document.forms["f1"]["n4"].value;
     if (document.forms["f1"]["picker2"].value == "C") {
         tempNum3 = this.combination(tempNum1, tempNum2);
-        document.getElementById("fm1").innerHTML+='C('+tempNum1+','+tempNum2+')';
+        document.getElementById("fm1").innerHTML += 'C(' + tempNum1 + ',' + tempNum2 + ')';
     }
     else {
-        tempNum3=this.permutation(tempNum1,tempNum2);
-        document.getElementById("fm1").innerHTML+='P('+tempNum1+','+tempNum2+')';
+        tempNum3 = this.permutation(tempNum1, tempNum2);
+        document.getElementById("fm1").innerHTML += 'P(' + tempNum1 + ',' + tempNum2 + ')';
     }
-    downNum*=tempNum3;
-    document.getElementById("fm2").innerHTML=downNum;
+    downNum *= tempNum3;
+    document.getElementById("fm2").innerHTML = downNum;
     getAnswer();
 }
 
 function getAnswer() {
-    var temp=gcd(upNum,downNum);
-    document.getElementById("ans1").innerHTML=upNum/temp+'/'+downNum/temp;
-    document.getElementById("ans2").innerHTML=(upNum/downNum).toFixed(6);
+    var temp = gcd(upNum, downNum);
+    document.getElementById("ans1").innerHTML = upNum / temp + '/' + downNum / temp;
+    document.getElementById("ans2").innerHTML = (upNum / downNum).toFixed(6);
 }
 
 function clearAllNum() {
-    document.getElementById("fz1").innerHTML=document.getElementById("fz2").innerHTML=document.getElementById("fm1").innerHTML=document.getElementById("fm2").innerHTML=document.getElementById("ans1").innerHTML=document.getElementById("ans2").innerHTML="";
-    upNum=downNum=1;
+    document.getElementById("fz1").innerHTML = document.getElementById("fz2").innerHTML = document.getElementById("fm1").innerHTML = document.getElementById("fm2").innerHTML = document.getElementById("ans1").innerHTML = document.getElementById("ans2").innerHTML = "";
+    upNum = downNum = 1;
 }
 
 combination: function combination(m, n) {
