@@ -28,17 +28,20 @@
     Rez=\frac{z+\bar{z}}{2},Imz=\frac{z-\bar{z}}{2i}\\
     z\bar{z}=(Rez)^2+(Imz)^2=|z|^2\\
     ||z_1|-|z_2||\leq|z_1+z_2|\leq|z_1|+|z_2|\\
-    \theta=Argz=argz+2k\pi (k=0,\pm1,\pm2,...)\\
-    argz
-    = \left\{\begin{matrix}
-    \arctan \frac{y}{x}, & \text{x>0,y为任意实数}\\ 
-    \frac{\pi}{2},& \text{x=0,y>0}\\
-     \arctan\frac{y}{x}+\pi& x<0,y \leq 0\\
-    \arctan\frac{y}{x}-\pi&\text{x<0,y<0}\\
-    -\frac{\pi}{2}& \text{x=0,y<0}
-    \end{matrix}\right.\\
+    \theta=Argz=argz+2k\pi (k=0,\pm1,\pm2,...)"/> 
+    <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
     z^n=r^n[\cos(n\theta)+i\sin(n\theta)]\\
     \omega_k=\sqrt[n]{r}(\cos\frac{\varphi+2k\pi}{n}+i\sin\frac{\varphi+2k\pi}{n}),(k=0,1,2,...,n-1)"/> 
+    <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    argz= \left\{\begin{matrix}
+    \arctan \frac{y}{x} & x>0,y \in R\\ 
+    \frac{\pi}{2}& \text{x=0,y>0}\\
+     \arctan\frac{y}{x}+\pi & x<0,y \leq 0\\
+    \arctan\frac{y}{x}-\pi &x<0,y<0\\
+    -\frac{\pi}{2} & x=0,y<0
+    \end{matrix}\right."/> 
     <br/>
     <img src="http://latex.codecogs.com/gif.latex?
     z=x+iy=\frac{x'+iy'}{1-u'},\\
@@ -72,7 +75,7 @@
     |\int_Cf(z)dz|\leq\int_C|f(z)|ds\leq ML\\" />
     <br/>
     <img src="http://latex.codecogs.com/gif.latex?
-    \oint_Cf(z)dz=0,f(z)解析\\
+    \oint_Cf(z)dz=0,f(z)\text{analytic}\\
     F(z)=\int_{z_0}^z f(\xi)d\xi,F'(z)=f(z)\\
     f(z_0)=\frac{1}{2\pi i}\oint_C \frac{f(z)}{z-z_0}dz,z_0\in D\\
     f(z_0)=\frac{1}{2\pi}\int_0^{2\pi} f(z_0+Re^{i\theta})d\theta\\
@@ -81,21 +84,26 @@
     \nabla^2 H (x,y) = \frac{\partial^2 H}{\partial x^2} + \frac{\partial^2 H}{\partial y^2}=0\\" />
     <br/>
     <img src="http://latex.codecogs.com/gif.latex?
-    l= \lim \limits_{n \to +\infty}|\frac{c_{n+1}}{c_n}|=\lim_{n \to +\infty}\sqrt[n]{|c_n|},R=1/l\\
-    f(z)=\sum_{k=0}^{\infty}a_k(z-z_0)^k,a_k=\frac{1}{2\pi i}\oint_C \frac{f(\xi)}{(\xi-z_0)^{k+1}}d\xi=\frac{f^{(k)}(z_0)}{k!}\\
+    l=\lim_{n \to +\infty}|\frac{c_{n+1}}{c_n}|=\lim_{n \to +\infty}\sqrt[n]{|c_n|},R=\frac{1}{l}\\
+    f(z)=\sum_{k=0}^{\infty}a_k(z-z_0)^k,a_k=\frac{1}{2\pi i}\oint_C \frac{f(\xi)}{(\xi-z_0)^{k+1}}d\xi=\frac{f^{(k)}(z_0)}{k!}" />
+    <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
     e^z=\sum_{n=0}^\infty \frac{z^n}{n!},|z|<+\infty\\
-    \sin{z}=\sum_{n=0}^\infty(-1)^n\frac{z^{2n+1}}{(2n)!},|z|<+\infty,\\
-    \cos{z}=\sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!},|z|<+\infty,\\
-    \frac{1}{1\mp z}=\sum_{n=0}^\infty(\pm1)^nz^n,|z|<1\\
+    \sin{z}=\sum_{n=0}^\infty(-1)^n\frac{z^{2n+1}}{(2n)!},|z|<+\infty" />
+    <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \cos{z}=\sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!},|z|< +\infty" />
+    <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
     f(z)=\sum_{n=-\infty}^\infty C_n(z-z_0)^n,C_n=\frac{1}{2\pi i}\oint_C \frac{f(\zeta)}{(\zeta-z_0)^{n+1}}d\zeta,n=0,\pm1,\pm2,..." />
     <br/>
     <img src="http://latex.codecogs.com/gif.latex?
     Res[f(z),z_0]=C_{-1}=\frac{1}{2\pi i}\oint_C f(z)dz\\
     \oint_C f(z)dz=2\pi i\sum_{k=1}^nRes[f(z),z_k]\\
-    简单极点Res[f(z),z_0]=\lim_{z \to z_0}(z-z_0)f(z)\\
-    一阶极点Res[f(z),z_0]=\frac{P(z_0)}{Q'(z_0)}\\
-    m阶极点Res[f(z),z_0]=\frac{1}{(m-1)!}|lim_{z \to z_0}\frac{d^{m-1}}{dz^{m-1}}[(z-z_0)^mf(z)]\\
-    \infty孤立奇点Res[f,\infty]=-C_{-1}\\
+    \text{simple pole:}Res[f(z),z_0]=\lim_{z \to z_0}(z-z_0)f(z)\\
+    \text{o(1) pole:}Res[f(z),z_0]=\frac{P(z_0)}{Q'(z_0)}\\
+    \text{o(m) pole:}Res[f(z),z_0]=\frac{1}{(m-1)!}|lim_{z \to z_0}\frac{d^{m-1}}{dz^{m-1}}[(z-z_0)^mf(z)]\\
+    \infty\text{pole:}Res[f,\infty]=-C_{-1}\\
     \int_0^{2\pi}R(\cos{\theta},\sin{\theta})d\theta=2\pi i\sum_{k=1}^nRes[f(z),z_k]\\
     \int_{-\infty}^{+\infty}R(x)dx=2\pi i\sum_{k=1}^n Res[R(z),z_k]\\
     \int_{-\infty}^{+\infty}R(x)e^{iax}dx=2\pi i\sum_{k=1}^n Res[R(z),z_k]
