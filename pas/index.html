@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang='zh-CN'>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148038846-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-148038846-1');
+  </script>
+  <meta charset="utf-8">
+  <meta name="description" content="概率论与数理统计" />
+  <meta name="keywords" content="征站,个人网站,博客,概率论,数理统计" />
+  <meta http-equiv="content-language" content="zh-CN" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta name="author" content="Zhenger" />
+  <meta name="copyright" content="zhenger.xyz" />
+  <meta name="viewport" content="width=1280,inital-scale=1.0">
+  <title>概率统计</title>
+  <link rel="icon" href="cfico.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <p ><big><strong>建议使用Firefox浏览</strong></big></p><br>
+    <img src="http://latex.codecogs.com/gif.latex?A-B=A\bar{B},\bar{A}=\Omega-A\\
+    \overline{\bigcup_{k=1}^\infty A_k }=\bigcap_{k=1}^\infty\overline{A_k}\\
+    \overline{\bigcap_{k=1}^\infty A_k }=\bigcup_{k=1}^\infty\overline{A_k}\\
+    C_n^r=\frac{n!}{r!(n-r)!}\\
+    0\leq P(A)\leq1,P(\Omega)=1,P(\bigcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty P(A_i)\\
+    P(\varnothing )=0,P(\bigcup_{i=1}^m A_i)=\sum_{i=1}^m P(A_i),P(A)+P(\bar{A})=1,\\A\subset B\Rightarrow P(A)\leq P(B)\&P(B-A)=P(B)-P(A)
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    P(\bigcup_{i=1}^nA_i)=\sum_{i=1}^nP(A_i)-\sum_{1\leq i<j\leq k}P(A_iA_j)+\\\sum_{1\leq i<j<k\leq n}P(A_iA_jA_k)-...+(-1)^{n-1}P(A_1A_2...A_n)\\
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    P(A|B)=\frac{P(AB)}{P(B)}\\
+    P(AB)=P(B)P(A|B),P(B)>0\\
+    P(A)=\sum_{i=1}^nP(B_i)P(A|B_i)\\
+    P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{i=1}^nP(B_j)P(A|B_j)}\\
+    P(A_{i_1}A_{i_2}...A_{i_n})=P(A_{i_1})P(A_{i_2})...P(A_{i_n})
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?F_X(x)F(x)=P\{X\leq x\}=P\{\omega:X(\omega)\leq x\}"/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?x_1<x_2\Rightarrow F(x_1)\leq F(x_2),F(x+0)=F(x),"/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \lim_{x\to-\infty}F(x)=0\leq F(x)\leq1=\lim_{x\to+\infty}F(x)\\
+    \text{Geometric distribution:}P\{X=k\}=(1-p)^{k-1}p^k\\
+    \text{0-1 distribution:}P\{X=x\}=p^x(1-p)^{1-x},x=0,1\\
+    \text{Binomial distribution X~B(n,p):}P\{X=k\}=C_n^kp^k(1-p)^{n-k},k=0,1,2,...,n\\
+    \text{Poisson distribution X~P}(\lambda):P\{X=k\}=\frac{\lambda^k}{k!}e^{-\lambda},k=0,1,2,...,\lambda>0\\
+    \lim_{n\to\infty}np_n=\lambda>0\Rightarrow P_n(k)\approx P_\lambda(k)
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?F(x)=\int_{-\infty}^xf(u)du,F'(x)=f(x)"/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    f(x)\geq 0,\int_{-\infty}^{+\infty}f(x)=1,P\{x_1<x\leq x_2\}=\int_{x_1}^{x_2}f(x)dx,\\P\{X=x_0\}=0"/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?\text{Uniform distribution X~U(a,b):}\\
+    f(x)=\left\{\begin{matrix}
+    \frac{1}{b-a} &a<x<b \\ 
+    0&else 
+    \end{matrix}\right.\\
+    F(x)=\left\{\begin{matrix}
+    0 &x<a \\ 
+    \frac{x-a}{b-a}&,a\leq x<b \\ 
+    1&b\leq x 
+    \end{matrix}\right.
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?\text{Exponential distribution X~E(}\lambda):\\
+    f(x)=\left\{\begin{matrix}
+    \lambda e^{-\lambda x} &x>0 \\ 
+    0&else 
+    \end{matrix}\right.\\
+    F(x)=\left\{\begin{matrix}
+    1-e^{-\lambda x} &x>0 \\ 
+    0&, else \\ 
+    \end{matrix}\right.
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \text{Normal distribution X~N(}\mu,\sigma^2):\\
+    \varphi(x;\mu,\sigma^2)=\frac{e^{-\frac{(x-\mu)^2}{2\sigma^2}}}{\sigma \sqrt{2\pi}},x\in R\\
+    \Phi (x)=\int_{-\infty}^x\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}dt\\
+    \Phi(-x)=1-\Phi(x)\\
+    P\{x_1<X\leq x_2\}=\Phi(\frac{x_2-\mu}{\sigma})-\Phi(\frac{x_1-\mu}{\sigma})\\
+    P\{X>u_\alpha\}=\alpha,\Phi(u_\alpha)=1-\alpha
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    F(x,y)=P\{X\leq x,Y\leq y\},F_X(x)=F(x,\infty),F_Y(y)=F(\infty,y)\\
+    P\{x_1<X\leq x_2,y_1<Y\leq y_2\}=F(x_2,y_2)-F(x_2,y_1)-F(x_1,y_2)+F(x_1,x_2)\\
+    F(x,y)=\sum_{x_i\leq x}\sum_{y_j\leq y}p_{ij}\\
+    p_{i\cdot }=\sum_{j=1}^\infty p_{ij}\\
+    p_{\cdot j}=\sum_{i=1}^\infty p_{ij}\\
+    F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf(u,v)dudv\\
+    P\{(X,Y)\in G\}=\iint_Gf(x,y)d\sigma\\
+    f_X(x)=\int_{-\infty}^{+\infty}f(x,y)dy\\
+    f_Y(y)=\int_{-\infty}^{+\infty}f(x,y)dx\\
+    f(x)=\left\{\begin{matrix}
+    \frac{1}{S(G)} &(x,y)\in G \\ 
+    0 &else 
+    \end{matrix}\right.\\
+    \varphi(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}e^{-\frac{1}{2(1-\rho^2)}[\frac{(x-\mu_1)^2}{\sigma_1^2}-2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}]},x,y\in R
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    P\{X\leq x,Y\leq y\}=P\{X\leq x\}P\{Y\leq y\}\\
+    P\{X=x_i,Y=y_j\}=P\{X=x_i\}P\{Y=y_j\}\\
+    f(x,y)=f_X(x)f_Y(y)\\
+    P\{X=x_i|Y=y_i\}=\frac{p_{ij}}{p_{\cdot j}}\\
+    F_{X|Y}(x|y)=\int_{-\infty}^x\frac{f(u,y)}{f_Y(y)}du\\
+    f_{X|Y}(x|y)=\frac{f(x,y)}{f_Y(y)}\\
+    P\{a<Y\leq b\|X=c\}=\int_a^b f_{X|Y}(y|c)dy\\
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    P\{g(X)=y_j\}=\sum_{x_i\in S_j}P\{X=x_i\},S_j=\{x_i:g(x_i)=y_j\}\\
+    P\{G(X,Y)=z_k\}=\sum_{(x_i,y_j)\in T_k}P\{X=x_i,Y=y_j\},T_k=\{(x_i,y_j):G(x_i,y_j)=z_k\}\\
+    P\{X+Y=m\}=\sum_{k=0}^mp(k)q(m-k),m=0,1,2,...\\
+    F_Y(y)=P\{g(X)\leq y\}=\int_{|x:g(x)\leq y|}f_X(x)dx\\
+    F_Z(z)=P\{G(X,Y)\leq z\}=\iint_{|(x,y):G(x,y)\leq z|}f(x,y)dxdy\\
+    f_Y(y)=\left\{\begin{matrix}
+    f_X[h(y)]|h'(y)| &\alpha<y<\beta \\ 
+    0 &else 
+    \end{matrix}\right.\\
+    F_{max}(z)=F_X(z)F_Y(z)\\
+    F_{min}(z)=1-[1-F_X(z)][1-F_Y(z)]\\
+    F_Z(z)=\iint_{x+y\leq z}f(x,y)dxdy\\
+    f_z(z)=\int_{-\infty}^{+\infty}f(z-y,y)dy=\int_{-\infty}^{+\infty}f(x,z-x)dx\\
+    F_{X/Y}(z)=\int_{-\infty}^z[\int_0^{+\infty}yf(uy,y)dy-\int_{-\infty}^0yf(uy,y)dy]du
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    E(X)=\sum_{i=1}^\infty x_ip_i,\sum_{i=1}^\infty|x_i|p_i<+\infty\\
+    E(X)=\int_{-\infty}^{+\infty}xf(x)dx,\int_{-\infty}^{+\infty}|x|f(x)dx<+\infty\\
+    E[g(X)]=\sum_{i=1}^\infty g(x_i)p_i\\
+    E[g(X)]=\int_{-\infty}^\infty g(x)f_X(x)dx\\
+    E[G(X,Y)]=\sum_{i=1}^\infty\sum_{j=1}^\infty G(x_i,y_j)p_{ij}\\
+    E[G(X,Y)]=\int_{-\infty}^\infty\int_{-\infty}^\infty G(x,y)f(x,y)dxdy\\
+    D(X)=E[X-E(X)]^2=E(x^2)-[E(X)]^2\\
+    D(X\pm Y)=D(X)+D(Y)\pm2E\{[X-E(X)][Y-E(Y)]\}\\
+    X^\ast=\frac{X-E(X)}{\sqrt{D(X)}}\\
+    X\sim B(n,p),E(X)=np,D(X)=np(1-p)\\
+    X\sim P(\lambda),E(X)=D(X)=\lambda\\
+    X\sim U(a,b),E(X)=\frac{a+b}{2},D(X)=\frac{(b-a)^2}{12}\\
+    X\sim E(\lambda),E(X)=\frac{1}{\lambda},D(X)=\frac{1}{\lambda^2}
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    cov(X,Y)=E\{[X-E(X)][Y-E(Y)]\}=E(XY)-E(X)E(Y)\\
+    cov(X,Y)=cov(Y,X)\\
+    cov(aX_1+bX_2,Y)=acov(X_1,Y)+bcov(X_2,Y)\\
+    \rho_{XY}=\frac{cov(X,Y)}{\sqrt{D(X)D(Y)}}=cov(X^\ast,Y^\ast)\\
+    \gamma_k=E(X^k),\alpha_k=E(|X|^k)\\
+    \mu_k=E\{[X-E(X)]^k\},\beta_k=E\{|X-E(X)|^k\}
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    X_n\xrightarrow{P}X,\lim_{n\to\infty}X_n=X(P),\lim_{n\to\infty}P\{|X_n-X|<\varepsilon \}=1\\
+    X_n\xrightarrow{L}X,\lim_{n\to\infty}F_n(x)=F(x)\\
+    P\{|X-E(X)|\geq\varepsilon\}\leq\frac{D(X)}{\varepsilon^2},P\{|X-E(X)|<\varepsilon\}\geq\frac{D(X)}{\varepsilon^2}\\
+    \lim_{n\to \infty}P\{|\frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)|<\varepsilon\}=1\\
+    \frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)\xrightarrow{P}0\\
+    D(X_i)<C\\
+    E(X_i)=\mu,D(X_i)=\sigma^2\\
+    E(X_i)=\mu\\
+    \lim_{n\to\infty}P\{|\frac{m}{n}-p|<\varepsilon\}=1\\
+    Z_n=\frac{\sum_{i=1}^nX_i-\sum_{i=1}^nE(X_i)}{\sqrt{\sum_{i=1}^nD(X_i)}}\\
+    F_n=P\{Z_n\leq x\},\lim_{n\to\infty}F_n(x)=\Phi(x)\\
+    E(X_i)=\mu,D(X_i)=\sigma^2>0\\
+    Y_n\sim B(n,p)
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \bar X=\frac{1}{n}\sum_{i=1}^nX_i\\
+    S^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2\\
+    A_k=\frac{1}{n}\sum_{i=1}^nX_i^k\\
+    M_k=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^k\\
+    \chi^2=\sum_{i=1}^nX_i^2,E(\chi^2)=n,D(\chi^2)=2n\\
+    P\{\chi^2>\chi_\alpha^2(n)\}=\alpha\\
+    T=\frac{X}{\sqrt{Y/n}},X\sim N,Y\sim\chi^2\\
+    P\{T>t_\alpha(n)\}=\alpha\\
+    F=\frac{\chi_1^2/n_1}{\chi_2^2/n_2}\\
+    P\{F>F\alpha(n_1,n_2)\}=\alpha\\
+    \bar X,S^2 \text{ Independent}\\
+    \bar X\sim N(\mu,\frac{\sigma^2}{n})\\
+    \frac{n-1}{\sigma^2}S^2\sim\chi^2(n-1)\\
+    \frac{\bar X-\mu}{S/\sqrt{n}}\sim t(n-1)\\
+    \frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\sim F(n_1-1,n_2-1)\\
+    \frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\sim t(n_1+n_2-2),\sigma_1^2=\sigma_2^2=\sigma^2,\\
+    S_\omega=\sqrt{\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}}
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \gamma_k(\theta_1,\theta_2,...,\theta_m)=A_k\\
+    \frac{\partial lnL}{\partial \theta_k}=0\\
+    E(\hat{\theta})=0\\
+    D(\hat{\theta_0})\leq D(\hat{\theta})\\
+    \hat{\theta}\xrightarrow[n\to\infty]{P}\theta\\
+    P\{\hat{\theta_1}(X_1,X_2,...,X_n)\leq\theta \leq \hat{\theta_2}(X_1,X_2,...,X_n)\}=1-\alpha,[\hat{\theta_1},\hat{\theta_2}]
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \mu(\sigma^2):U=\frac{\bar X-\mu}{\sigma/\sqrt{n}}\sim N(0,1)\\
+    \mu(no\sigma^2):T=\frac{\bar X-\mu}{S/\sqrt{n}}\sim t(n-1)\\
+    \sigma^2(\mu):\chi^2=\frac{\sum_{i=1}^n(X_i-\mu)^2}{\sigma^2}\sim \chi^2(n)\\
+    \sigma^2(no\mu):\chi^2=\frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)\\
+    \mu_1-\mu_2(\sigma_1,\sigma_2)--U=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_2^2}{n_1}+\frac{\sigma_2^2}{n_2}}}\sim N(0,1)\\
+    \mu_1-\mu_2(no\sigma_1,\sigma_2)--T=\frac{(\bar X-\bar Y)-(\mu_1-\mu_2)}{S_\omega\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\sim t(n_1+n_2-2)\\
+    \sigma_2^2/\sigma_1^2(no\mu)--F=\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}\sim F(n_1-1,n_2-1)\\
+    extreamPoint\to \infty,\alpha/2\to\alpha
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    \mu=\mu_0(\sigma^2):U=\frac{\bar X-\mu_0}{\sigma_0/\sqrt{n}}\sim N(0,1)\\
+    \mu=\mu_0(no\sigma^2):T=\frac{\bar X-\mu_0}{S/\sqrt{n}}\sim t(n-1)\\
+    \sigma^2=\sigma_0^2(\mu):\chi^2=\sum_{i=1}^n(\frac{X_i-\mu}{\sigma_0})^2\sim \chi^2(n)\\
+    \sigma^2=\sigma_0^2(no\mu):\chi^2=(n-1)\frac{S^2}{\sigma_0^2}\sim \chi^2(n-1)
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    Y=a+bX+\varepsilon,\varepsilon\sim N(0,\sigma^2)\\
+    \hat b=\frac{l_{xy}}{l_{xx}}\\
+    \hat a=\bar y-\hat b\bar x\\
+    \rho=\frac{l_{xy}}{\sqrt{l_{xx}}\sqrt{l_{yy}}}
+    "/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?"/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?"/> <br/>
+    <img src="http://latex.codecogs.com/gif.latex?
+    "/> 
+    <br/>
+    
+    <img src="http://latex.codecogs.com/gif.latex?--Zhenger" /><br/>
+    <div>back to<a href="http://zhenger.xyz" alt="无心之惩">home</a></div>
+    
+</body>
+</html>
