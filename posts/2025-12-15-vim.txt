@@ -1,0 +1,2 @@
+vim edit another file in the dir:
+:E

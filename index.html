@@ -1,61 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>个人主页</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Z</title>
+    <meta name="color-scheme" content="light dark" />
     <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #1f2328;
+            --muted: #6a737d;
+            --line: #eaecef;
+            --accent: #0969da;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0d1117;
+                --fg: #c9d1d9;
+                --muted: #8b949e;
+                --line: #30363d;
+                --accent: #58a6ff;
+            }
+        }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
         }
-        .container {
-            width: 100%;
-            height: 100vh;
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        header {
+            max-width: 920px;
+            margin: 24px auto 8px;
+            padding: 0 16px;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
         }
-        .content {
-            width: 300px;
-            height: 300px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .brand h1 { margin: 0; font-size: 22px; font-weight: 600; }
+        .brand p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+
+        main {
+            max-width: 920px;
+            margin: 8px auto 32px;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 16px;
         }
-        .avatar {
-            width: 100px;
-            height: 100px;
-            margin: 20px auto;
-            border-radius: 50%;
-            overflow: hidden;
+        @media (max-width: 800px) {
+            main { grid-template-columns: 1fr; }
+            aside { order: 2; }
+            article { order: 1; }
         }
-        .avatar img {
-            width: 100%;
-            height: 100%;
+
+        aside {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 12px;
+            position: sticky;
+            top: 16px;
+            height: fit-content;
         }
-        .name {
-            font-size: 20px;
-            color: #333;
-        }
-        .bio {
+        .section-title {
+            margin: 0 0 8px;
             font-size: 14px;
-            color: #666;
+            color: var(--muted);
+            letter-spacing: .02em;
+        }
+        .posts { margin: 0; padding: 0; list-style: none; }
+        .posts li { display: flex; gap: 8px; align-items: baseline; padding: 6px 4px; border-radius: 6px; }
+        .posts li:hover { background: color-mix(in oklab, var(--line) 50%, transparent); }
+        .posts time { color: var(--muted); font-size: 12px; width: 84px; flex: 0 0 84px; }
+        .posts a { color: inherit; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        article {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            min-height: 40vh;
+        }
+        .title { margin: 0 0 8px; font-size: 20px; font-weight: 600; }
+        .meta { margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+        .content { white-space: pre-wrap; word-wrap: break-word; }
+        .empty { color: var(--muted); }
+        .status { color: var(--muted); font-size: 13px; }
+
+        footer {
+            max-width: 920px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: var(--muted);
+            font-size: 13px;
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="content">
-            <div class="avatar">
-                <img src="avatar.jpg" alt="avatar">
-            </div>
-            <div class="name">张三</div>
-            <div class="bio">工程师</div>
+    <header>
+        <div class="brand">
+            <h1>Z</h1>
+            <p>记录想法，保持专注。</p>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <aside>
+            <h2 class="section-title">文章</h2>
+            <ul id="postList" class="posts"></ul>
+            <p id="listStatus" class="status"></p>
+        </aside>
+        <article>
+            <h2 id="postTitle" class="title">欢迎</h2>
+            <p id="postMeta" class="meta"></p>
+            <div id="postContent" class="content empty">从左侧选择一篇文章开始阅读。</div>
+        </article>
+    </main>
+
+    <footer>
+        <span>© <span id="year"></span> · Z · blog</span>
+    </footer>
+
+    <script>
+        const CONFIG = (() => {
+            const Fallback = { owner: 'Zhenger233', repo: 'Zhenger233.github.io', branch: 'main', path: 'posts' };
+            const host = (typeof window !== 'undefined' && window.location && window.location.hostname) || '';
+            if (host.endsWith('.github.io')) {
+                const owner = host.replace('.github.io', '');
+                return { owner, repo: owner + '.github.io', branch: 'main', path: 'posts' };
+            }
+            return Fallback;
+        })();
+
+        const $ = (sel) => document.querySelector(sel);
+        const postListEl = $('#postList');
+        const listStatusEl = $('#listStatus');
+        const postTitleEl = $('#postTitle');
+        const postMetaEl = $('#postMeta');
+        const postContentEl = $('#postContent');
+        $('#year').textContent = String(new Date().getFullYear());
+
+        function parseName(name) {
+            const base = name.replace(/\.(txt|md)$/i, '');
+            const m = base.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+            if (m) {
+                const [ , y, mo, d, rest ] = m;
+                const title = decodeURIComponent(rest).replace(/[-_]+/g, ' ').trim();
+                return { date: `${y}-${mo}-${d}`, title: title || base, slug: name };
+            }
+            return { date: '', title: decodeURIComponent(base).replace(/[-_]+/g, ' ').trim() || base, slug: name };
+        }
+
+        function buildApi(urlPath) {
+            return `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${urlPath}?ref=${CONFIG.branch}`;
+        }
+
+        async function fetchJSON(url) {
+            const r = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return r.json();
+        }
+
+        async function loadList() {
+            listStatusEl.textContent = '加载中…';
+            postListEl.innerHTML = '';
+            try {
+                const data = await fetchJSON(buildApi(CONFIG.path));
+                const files = (Array.isArray(data) ? data : [])
+                    .filter(x => x.type === 'file' && /\.(txt)$/i.test(x.name));
+                if (!files.length) {
+                    listStatusEl.textContent = '还没有文章，向 posts/ 添加 .txt 即可。';
+                    return;
+                }
+                files.sort((a, b) => b.name.localeCompare(a.name));
+                for (const f of files) {
+                    const info = parseName(f.name);
+                    const li = document.createElement('li');
+                    const t = document.createElement('time');
+                    t.textContent = info.date || '—';
+                    const a = document.createElement('a');
+                    a.href = `#${encodeURIComponent(info.slug)}`;
+                    a.textContent = info.title;
+                    li.appendChild(t);
+                    li.appendChild(a);
+                    postListEl.appendChild(li);
+                }
+                listStatusEl.textContent = '';
+                // Open first post if none selected
+                if (!location.hash && files[0]) {
+                    location.hash = encodeURIComponent(files[0].name);
+                } else if (location.hash) {
+                    handleHashChange();
+                }
+            } catch (e) {
+                console.error(e);
+                listStatusEl.textContent = '加载文章列表失败，请刷新重试。';
+            }
+        }
+
+        async function loadPost(filename) {
+            postTitleEl.textContent = '加载中…';
+            postMetaEl.textContent = '';
+            postContentEl.textContent = '';
+            postContentEl.classList.remove('empty');
+            try {
+                const list = await fetchJSON(buildApi(CONFIG.path));
+                const item = list.find(x => x.type === 'file' && x.name === filename);
+                if (!item) throw new Error('not found');
+                const info = parseName(item.name);
+                const r = await fetch(item.download_url);
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                const txt = await r.text();
+                postTitleEl.textContent = info.title;
+                postMetaEl.textContent = info.date ? `${info.date} · ${item.name}` : item.name;
+                postContentEl.textContent = txt;
+            } catch (e) {
+                console.error(e);
+                postTitleEl.textContent = '未找到文章';
+                postMetaEl.textContent = filename;
+                postContentEl.textContent = '请确认文件已推送到 posts/，并稍后刷新。';
+            }
+        }
+
+        function handleHashChange() {
+            const h = decodeURIComponent(location.hash.replace(/^#/, ''));
+            if (h) loadPost(h);
+        }
+
+        window.addEventListener('hashchange', handleHashChange);
+        loadList();
+    </script>
 </body>
 </html>
