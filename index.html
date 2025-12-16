@@ -127,11 +127,11 @@
 
     <script>
         const CONFIG = (() => {
-            const Fallback = { owner: 'Zhenger233', repo: 'Zhenger233.github.io', branch: 'main', path: 'posts' };
+            const Fallback = { owner: 'Zhenger233', repo: 'Zhenger233.github.io', branch: 'master', path: 'posts' };
             const host = (typeof window !== 'undefined' && window.location && window.location.hostname) || '';
             if (host.endsWith('.github.io')) {
                 const owner = host.replace('.github.io', '');
-                return { owner, repo: owner + '.github.io', branch: 'main', path: 'posts' };
+                return { owner, repo: owner + '.github.io', branch: 'master', path: 'posts' };
             }
             return Fallback;
         })();
@@ -155,8 +155,9 @@
             return { date: '', title: decodeURIComponent(base).replace(/[-_]+/g, ' ').trim() || base, slug: name };
         }
 
-        function buildApi(urlPath) {
-            return `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${urlPath}?ref=${CONFIG.branch}`;
+        function buildApi(urlPath, branch) {
+            const ref = branch || CONFIG.branch;
+            return `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${urlPath}?ref=${ref}`;
         }
 
         async function fetchJSON(url) {
@@ -165,11 +166,36 @@
             return r.json();
         }
 
+        async function getDefaultBranch() {
+            try {
+                const r = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}`);
+                if (!r.ok) return null;
+                const meta = await r.json();
+                return meta && meta.default_branch || null;
+            } catch {
+                return null;
+            }
+        }
+
         async function loadList() {
             listStatusEl.textContent = '加载中…';
             postListEl.innerHTML = '';
             try {
-                const data = await fetchJSON(buildApi(CONFIG.path));
+                // resolve branch automatically
+                const detected = await getDefaultBranch();
+                const primaryBranch = detected || CONFIG.branch || 'main';
+                let data;
+                try {
+                    data = await fetchJSON(buildApi(CONFIG.path, primaryBranch));
+                } catch (e) {
+                    // Retry with common alternative branch
+                    if (String(e).includes('404')) {
+                        data = await fetchJSON(buildApi(CONFIG.path, 'master'));
+                        CONFIG.branch = 'master';
+                    } else {
+                        throw e;
+                    }
+                }
                 const files = (Array.isArray(data) ? data : [])
                     .filter(x => x.type === 'file' && /\.(txt)$/i.test(x.name));
                 if (!files.length) {
@@ -198,7 +224,7 @@
                 }
             } catch (e) {
                 console.error(e);
-                listStatusEl.textContent = '加载文章列表失败，请刷新重试。';
+                listStatusEl.textContent = '加载文章列表失败：请确认仓库已启用 Pages、分支名为 main/master，且 posts/ 已推送。';
             }
         }
 
