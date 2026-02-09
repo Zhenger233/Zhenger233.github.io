@@ -1,2 +1,8 @@
 vim edit another file in the dir:
 :E
+vim 显示行号：
+: set nu
+剪切粘贴：
+d5w p
+vim 查找字符串：
+/aaa

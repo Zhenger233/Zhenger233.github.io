@@ -1,0 +1,35 @@
+powershell窗口：拆分、调整大小
+https://learn.microsoft.com/zh-cn/windows/terminal/panes#resizing-a-pane
+
+ls 颜色：
+ls --color
+
+sort 合理数字排序：
+sort -V
+
+去除zsh主题的加载git状态：
+export GIT_OPTIONAL_LOCKS=0
+
+撤销某个文件的更改：
+git restore a.py
+
+查看文件夹大小
+du -sh .
+
+传文件夹：
+scp -r root@1.2.3.4:/home/data ./my_download
+
+端口转发：
+ssh -L 8080:localhost:3000 root@1.2.3.4
+
+处理不同平台的换行：
+git config --global core.autocrlf input
+
+bashrc 没有生效：
+vim ~/.bash_profile
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+添加配置的时候提示 在模块'cs61b-sp21'中找不到类'HelloWorld'：
+在左侧项目面板中，右键点击 lab1 文件夹，选择 Mark Directory as → Sources Root
