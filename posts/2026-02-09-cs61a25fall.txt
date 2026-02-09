@@ -1,0 +1,124 @@
+CS61A 笔记整理
+Congratulations, you have reached the end of your last CS 61A project!
+
+使用到AI的地方：
+hw02 make_repeater nonlocal
+ants EC1 在类外面修改方法实现
+lab06 类里面定义装饰器 staticmethod
+hw10 sql去重，子查询语法 WITH data AS ()
+SELECT pa.child AS ca, pb.child AS cb FROM parents AS pa, parents AS pb WHERE pa.parent = pb.parent AND pa.child < pb.child;
+CREATE TABLE low_variance AS WITH data AS (SELECT fur, AVG(height), AVG(height)*0.7 AS low, AVG(height)*1.3 AS high, max(height) - MIN(height) AS diff FROM dogs GROUP BY fur) SELECT fur, diff from data where fur NOT IN (SELECT DISTINCT(dogs.fur) as err FROM dogs JOIN data ON dogs.height < data.low OR dogs.height > data.high);
+scheme 在 WSL 里面跑起来调试，查看调用栈和变量值
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "WSL: ok (q06 suite2 case1)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/mnt/d/Documents/GitHub/cs61a25/scheme/ok",
+            "console": "integratedTerminal",
+            "cwd": "/mnt/d/Documents/GitHub/cs61a25/scheme",
+            "args": [
+                "--local",
+                "-q",
+                "06",
+                "--suite",
+                "2",
+                "--case",
+                "1"
+            ]
+        }
+    ]
+}
+
+
+神奇的有意思的语法检测题：
+>>> True and 13
+? True
+-- Not quite. Try again! --
+
+? Error
+-- Not quite. Try again! --
+
+? False
+-- Not quite. Try again! --
+
+? 13
+-- OK! --
+
+>>> range(3, 6)
+range(3, 6)
+
+>>> float('inf')
+inf
+
+部分语法：
+判断 None：
+a is not None
+
+类里面定义装饰器：
+    @staticmethod
+    def add_trans(f):
+        def wrapper(self, *args, **kwargs):
+            before = self.balance
+            ans = f(self, *args, **kwargs)
+            after = self.balance
+            self.transactions.append(Transaction(len(self.transactions), before, after))
+            return ans
+        return wrapper
+        
+在其他地方修改对象的方法：
+f = a.method
+f(arg) # 已经绑定了 a
+a.method = types.MethodType(f, a)
+
+scheme 不能随便加括号
+
+python 集合：
+s=set()
+s.add()
+
+
+部分题目思路提示：
+hw03 make_anonymous_factorial 
+Y-Combinator style recursion: Since we can't use def or assignment, we need to create recursion using lambda expressions.
+
+hw03 move_stack
+move(3,1,3)
+move(2,1,2):move(1,1,3),move(1,1,2),move(1,3,2)
+move(1,1,3)
+move(2,2,3)
+
+hw03 count_dollars
+f(6, 1)
+f(5, 1)+f(6, 5)
+因此，我们可以递归地将 n 整数划分问题 m 归约为两个更简单的问题：（1）划分较小的数 n-m ，（2）分量较小，最大为 m-1 。
+
+hw03 count_dollars_upward
+根据提示，要从 1 开始计算，因此之前的思路 f(n) + ff(n-1) 行不通，必须从 g(1) 开始
+
+hw04 
+查找 tree 的接口
+
+hw07
+用到了调试：print('DEBUG:')
+
+cats 07
+仔细思考各个情况
+
+hw08 no-repeats
+filter
+
+hw09 
+先做 lab10就行了
+
+scheme
+labmda 和 mu 的区别
+
+scheme EC3
+当 while 循环处理一个 Unevaluated 时，这个表达式已经是尾位置（因为它是被延迟求值返回的）。所以 while 循环内部应该始终传 True，告诉后续的求值"你在尾位置"。
+
